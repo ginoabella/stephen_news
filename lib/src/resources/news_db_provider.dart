@@ -53,7 +53,7 @@ class NewsDbProvider implements Source, Cache {
     );
 
     if (maps.length > 0) {
-      return ItemModel.fromJson(maps.first);
+      return ItemModel.fromDb(maps.first);
     }
     return null;
   }
@@ -64,7 +64,11 @@ class NewsDbProvider implements Source, Cache {
   }
 
   Future<int> addItem(ItemModel item) {
-    return db.insert("Items", item.toMap());
+    return db.insert(
+      "Items",
+      item.toMap(),
+      //conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
   }
 }
 

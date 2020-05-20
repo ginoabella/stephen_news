@@ -45,4 +45,10 @@ class Repository {
 
     return item;
   }
+
+  Future<void> clearCache() async {
+    for (var cache in caches) {
+      await cache.clear();
+    }
+  }
 }
